@@ -39,44 +39,24 @@ Screen switches, sleep/wake, and modal popups can also be triggered by a script,
 This repo (`flowtile/`) is the application only - fonts and built-in icons are included, but no deployment config. A real install places its own `config/` and `commands/` alongside the repo, outside it, so `git pull` never touches user files.
 
 ```
-flowtile/                    ← this repo
-  main.py                  entry point: loads config, wires everything, runs the render loop
-  src/
-    screens_schema.py       config schema (Key constants, TYPES, SCHEMA) + custom YAML tags
-    config_loader.py        generic recursive schema-driven YAML loader
-    component.py             Component: data pipeline + drawing
-    component_registry.py    loads/flattens/inherits components from config
-    component_property.py    Property: static value or !var reference
-    screens.py                Screen / ScreenManager
-    screen_navigation.py       axis-based screen navigation
-    axis.py                     Axis / AxisElement model used by navigation
-    screen_sleep.py              screen sleep/wake timer
-    screen_animation.py           slide transition between screens
-    modal_renderer.py              modal popup queue + rendering
-    joystick.py                     GPIO joystick, edge-based button events
-    hardware/
-      device_provider.py           hardware initializer registry + dynamic loader
-      gpio_gpiod.py                gpiod wrapper used by both display and joystick
-      default/screen.py            built-in SSD1322 screen initializer
-      default/joystick.py          built-in GPIO joystick initializer
-    command_runner.py                 subprocess manager: threading, EOF buffering, control sequences
-    data_source.py, data_source_collection.py, data_source_type.py
-    variable_store.py                 per-component variable snapshot, backs !var
-    game_loop.py                      fixed-fps loop timer
-    render/                            content renderers: text, image, progressbar, chart
-    transform/                         flowline language + function registry
-      lang/                            tokenizer, parser, evaluator, environment, functions
-    config/                            config_loader helpers (path matching, field binding)
-  font/                     Tiny5, SpaceMono TTFs
-  images/modal/             info/warn/error icons for the modal renderer
-  tests/flowline/           pytest suite for the flowline language
-  docs/                     this documentation
+flowtile/                   ← this repo, no need to touch anything here
+  font/                     built-in fonts (Tiny5, SpaceMono)
+  images/                   built-in icons
+  docs/                     documentation
+  src/                      application source
 
-config/                     deployment config - outside the repo, write your own
-  config.yaml               main config file (can include others)
-  hardware/screen.py        optional custom hardware initializer
-  transform/                optional custom flowline functions
-commands/                   shell scripts used as data sources - also outside the repo
+config/                     your deployment config - create this yourself, outside the repo
+  config.yaml               main config (can include the files below). This one is read first
+  some-file.yaml            you can create any yaml file. to use it, include it in `include` section in main config file
+  hardware/                 optional: custom screen / joystick initializers
+    screen.py               look at default ones to figure out what they do
+    joystick.py
+  transform/                optional: custom flowline functions
+    functions.py
+
+commands/                   your shell scripts — also outside the repo
+  uptime.sh
+  ...
 ```
 
 ## Docs
