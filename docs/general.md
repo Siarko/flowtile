@@ -4,6 +4,10 @@
 general:
   screen_fps: 10        # int, render loop target FPS (min 1)
   sleep_after: -1       # int, seconds of inactivity before the screen sleeps; -1 = never
+  animation:
+    fps: 30             # int, FPS during a screen transition (min 1)
+    delta_x: 30         # int, horizontal slide speed in pixels per frame
+    delta_y: 10         # int, vertical slide speed in pixels per frame
   hardware:
     screen_initializer: !cwd hardware/screen.py     # optional
     joystick_initializer: !cwd hardware/joystick.py # optional
@@ -20,6 +24,18 @@ Target frames per second for the render loop. The display redraws at this rate r
 ## `sleep_after`
 
 Seconds of joystick inactivity before the screen turns off. `-1` disables sleep entirely. Sleep can also be triggered or cancelled from a script via control sequences — see [data.md](data.md#script-control-sequences).
+
+## `animation`
+
+Controls the slide transition that plays when switching screens.
+
+| key | default | meaning |
+|---|---|---|
+| `fps` | `30` | frame rate during the transition; higher = smoother, minimum 1 |
+| `delta_x` | `30` | horizontal slide speed in pixels per frame; used when navigating left/right |
+| `delta_y` | `10` | vertical slide speed in pixels per frame; used when navigating up/down |
+
+The transition slides the old screen out and the new one in simultaneously. The direction of the slide matches the navigation direction. The transition ends as soon as both screens reach their final positions, so the actual duration depends on the screen dimensions divided by `delta_x`/`delta_y`.
 
 ## `hardware`
 
