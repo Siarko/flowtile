@@ -11,7 +11,6 @@ class GPIODWrapper:
         self.lines = {}
 
     def setup(self, pin, direction):
-        print("setup, pin:", pin, " dir:", direction)
         if direction.lower() == 'out':
             line = gpiod.request_lines(
 		        self.chip,
