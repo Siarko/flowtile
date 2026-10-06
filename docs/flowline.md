@@ -171,8 +171,8 @@ Register your own via a decorator, in a plain Python file:
 from src.transform.lang.functions import ValueType
 from src.transform.registry import register_function
 
-@register_function("format_bytes", [ValueType.ANY])
-def run(value: int) -> str:
+@register_function("format_bytes", [ValueType.INT])
+def run(value) -> str:
     v = int(value)
     unit = "B"
     if v > 1024:

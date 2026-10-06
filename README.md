@@ -66,3 +66,11 @@ OR with UV
 ```bash
 uv run python main.py
 ``` 
+
+## TODO
+- [ ] Floating components
+- [ ] Flowline DSL improvements
+  - [ ] Dictionary support
+  - [ ] More builtin functions
+- [ ] Interactive components
+- [ ] Dynamic Content Renderer properties
