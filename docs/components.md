@@ -67,7 +67,7 @@ components:
   border_color: Color | {top, bottom, left, right}
 ```
 
-`Color` is a greyscale/RGB value for the SSD1322: an `int` 0-255 is shorthand for `rgb(v,v,v)` (a grey level), or write any Pillow-style color string (`"rgb(100,100,100)"`, `"rgba(0,0,0,0)"`, ...). `-1` (or `color_bg` omitted) means transparent background.
+`Color` is a greyscale/RGB value: an `int` 0-255 is shorthand for `rgb(v,v,v)` (a grey level), or write any Pillow-style color string (`"rgb(100,100,100)"`, `"rgba(0,0,0,0)"`, ...). `-1` (or `color_bg` omitted) means transparent background.
 
 ## Property values and `!var`
 

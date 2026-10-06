@@ -15,7 +15,7 @@ cd flowtile
 uv run python main.py
 ```
 
-Needs an actual SSD1322 over SPI and `/dev/gpiochip0` — display and GPIO code (`device_provider.py`, `gpio_gpiod.py`, `joystick.py`) only works on the target hardware (Raspberry Pi 5 / OpenWrt). There's no software framebuffer fallback for local development.
+Needs a real display and `/dev/gpiochipXX` — display and GPIO code (`device_provider.py`, `gpio_gpiod.py`, `joystick.py`) only works on the target hardware. There's no software framebuffer fallback for local development.
 
 `main.py` looks for config in `../config/` relative to itself (a sibling directory of the repo), and runs source scripts with that config directory as their working directory.
 

@@ -32,19 +32,26 @@ hardware:
   screen_initializer: !cwd hardware/screen.py
 ```
 
+### Supported displays
+
+The app renders through `luma.core`'s canvas API, so any display supported by `luma.oled` (already a dependency) works with a custom initializer — just change the device class in your `screen.py`. The full device list is in the [luma.oled docs](https://luma-oled.readthedocs.io).
+
+The interface (SPI or I2C) is also set in the initializer. SPI is used by the default; to use I2C replace `spi` with `i2c` from `luma.core.interface.serial`.
+
 ### Writing a custom initializer
 
 Create a Python file and decorate an initializer function with `@register_screen_provider` or `@register_joystick_provider`. The decorator argument is an arbitrary name shown in startup logs.
 
 ```python
-# config/hardware/screen.py
+# config/hardware/screen.py — example: SSD1306 over I2C
+from luma.core.interface.serial import i2c
+from luma.oled.device import ssd1306
 from src.hardware.device_provider import register_screen_provider
 
-@register_screen_provider("my-screen")
+@register_screen_provider("ssd1306-i2c")
 def init():
-    # set up and return the luma.oled device object
-    ...
-    return device
+    serial = i2c(port=1, address=0x3C)
+    return ssd1306(serial)
 ```
 
 ```python

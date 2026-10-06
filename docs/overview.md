@@ -1,6 +1,6 @@
 # FlowTile
 
-Config-driven status display for small monochrome screens. Draws tiles of data from shell commands on an SSD1322 OLED over SPI, navigated with a 5-button GPIO joystick.
+Config-driven status display for small screens. Draws tiles of data from shell commands on a luma-supported OLED, navigated with a 5-button GPIO joystick.
 
 Everything you see on screen is defined in YAML config: what shell commands to run, what their output means, and how to lay it out on screen.
 
@@ -19,7 +19,7 @@ Finally, each screen has a tree of components, each component can be rendered in
 - **Config-driven.** No screen layout is hardcoded. `screens.yaml` / `components.yaml` / `navigation.yaml` / `sources.yaml` (or however you split it) describe data sources and layout; the app just interprets them.
 - **Shell scripts are the data sources.** Whatever a script prints to stdout becomes display content, after formatting/transforming.
 - **A small expression language ("flowline") transforms raw script output** into whatever variables a component needs before display. See [flowline.md](flowline.md).
-- **Everything renders through PIL / luma.core** onto a `canvas`, either the real SSD1322 device or nothing - there's no software framebuffer preview, you need the actual hardware to see output.
+- **Everything renders through PIL / luma.core** onto a `canvas`, either the real device or nothing - there's no software framebuffer preview, you need the actual hardware to see output.
 
 ## Data flow
 
@@ -74,7 +74,7 @@ commands/                   your shell scripts — also outside the repo
 
 - Python 3.14, managed with `uv` (`pyproject.toml` / `uv.lock`)
 - `gpiod` - GPIO for display and joystick
-- `luma.oled` / `luma.core` - SSD1322 driver and canvas rendering
+- `luma.oled` / `luma.core` - OLED drivers and canvas rendering
 - `Pillow` - fonts, drawing, image loading
 - `psutil` - killing subprocess trees cleanly
 - `parse` - format-string based text extraction (`source_format`, chart's `format` option)
