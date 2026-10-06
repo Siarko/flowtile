@@ -1,0 +1,2 @@
+class NavigationException(Exception):
+    pass
