@@ -1,5 +1,7 @@
 # FlowTile
 
+![demo](docs/img/demo.jpeg)
+
 Config-driven status display for small monochrome screens. 
 Runs shell scripts, transforms their output with a small expression language, and 
 draws the results as a grid of tiles on attached display.
@@ -38,7 +40,7 @@ uv sync
 
 # with plain pip
 python -m venv .venv
-source .venv/bin/activate   # Windows: .venv\Scripts\activate
+source .venv/bin/activate
 pip install .
 ```
 
@@ -48,7 +50,7 @@ The app expects a `config/` directory as a sibling of the repo — not inside it
 parent/
   flowtile/    ← repo
   config/      ← your config (config.yaml + whatever you split it into)
-  commands/    ← your shell scripts
+  commands/    ← your shell scripts, but can be wherever
 ```
 
 Create `config/config.yaml` to get started - see [examples.md](docs/examples.md) for complete working configs.
