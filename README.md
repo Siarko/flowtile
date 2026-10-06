@@ -20,3 +20,47 @@ Designed for Raspberry Pi on OpenWrt, but works anywhere you have a supported di
 - [Navigation](docs/navigation.md)
 - [General settings](docs/general.md)
 - [Development](docs/development.md)
+
+## Installation
+
+**Requirements:** Python 3.14+
+
+```bash
+git clone https://github.com/your-username/flowtile
+cd flowtile
+```
+
+Install dependencies — pick one:
+
+```bash
+# with uv (recommended)
+uv sync
+
+# with plain pip
+python -m venv .venv
+source .venv/bin/activate   # Windows: .venv\Scripts\activate
+pip install .
+```
+
+The app expects a `config/` directory as a sibling of the repo — not inside it:
+
+```
+parent/
+  flowtile/    ← repo
+  config/      ← your config (config.yaml + whatever you split it into)
+  commands/    ← your shell scripts
+```
+
+Create `config/config.yaml` to get started - see [examples.md](docs/examples.md) for complete working configs.
+
+To run, with plain python:
+
+```bash
+python main.py
+``` 
+
+OR with UV
+
+```bash
+uv run python main.py
+``` 
