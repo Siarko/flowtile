@@ -1,6 +1,11 @@
 # FlowTile
 
-Config-driven status display for small monochrome screens. Runs shell scripts, transforms their output with a small expression language, and draws the results as a grid of tiles on an SSD1322 OLED over SPI. Navigation via a 5-button GPIO joystick.
+Config-driven status display for small monochrome screens. 
+Runs shell scripts, transforms their output with a small expression language, and 
+draws the results as a grid of tiles on attached display.
+Navigation via a 5-button GPIO joystick.
+
+Both display and joystick can be configured (custom initializers if necessary)
 
 Designed for Raspberry Pi on OpenWrt, but works anywhere you have a supported display and GPIO.
 
